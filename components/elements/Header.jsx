@@ -18,6 +18,7 @@ import {
 import Logo from './Logo';
 import Navigator from './Navigator';
 import { cn } from '@/lib/utils';
+import useUIState from '@/hooks/useUIState';
 
 const HeaderDrawer = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,7 @@ const HeaderDrawer = ({ children }) => {
 };
 
 const Header = ({ children }) => {
+	const { headerImageSrc, setHeaderImageSrc } = useUIState();
 	const [isScrolled, setIsScolled] = useState(false);
 	const headRef = useRef();
 
@@ -66,7 +68,10 @@ const Header = ({ children }) => {
 						alt='mediaItem'
 						className='object-cover'
 						fill
-						src='https://images.unsplash.com/photo-1712375787673-b412be45f0b5?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+						src={
+							headerImageSrc ||
+							'https://images.unsplash.com/photo-1712375787673-b412be45f0b5?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+						}
 					/>
 				</div>
 				<div className='absolute top-0 bg-black opacity-40 w-full h-[400px]'></div>
