@@ -29,6 +29,6 @@ export function chunkArray(arr: any[], chunkSize: number) {
 	return resultArray;
 }
 
-export function generateRandimHex() {
+export function generateRandomHex() {
 	return '#' + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, '0');
 }

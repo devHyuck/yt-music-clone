@@ -1,10 +1,16 @@
-import { TopSong } from '@/types';
-import React from 'react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import PlayListCard from './PlayListCard';
-import { chunkArray } from '@/lib/utils';
-import SongCard from './SongCard';
-import GenreCard from './GenreCard';
+import { TopSong } from "@/types";
+import React from "react";
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
+import PlayListCard from "./PlayListCard";
+import { chunkArray } from "@/lib/utils";
+import SongCard from "./SongCard";
+import GenreCard from "./GenreCard";
 
 interface SongListCarouselProps {
 	title: string;
@@ -23,7 +29,12 @@ const GenreColumn = ({ genreList = [] }: { genreList: string[] }) => {
 	);
 };
 
-const GenreListCarousel: React.FC<SongListCarouselProps> = ({ title, subTitle, Thumbnail, genreList }) => {
+const GenreListCarousel: React.FC<SongListCarouselProps> = ({
+	title,
+	subTitle,
+	Thumbnail,
+	genreList,
+}) => {
 	const chunkedGenreList = chunkArray(genreList, 4) as string[][];
 
 	return (
@@ -33,8 +44,12 @@ const GenreListCarousel: React.FC<SongListCarouselProps> = ({ title, subTitle, T
 					<article className='flex flex-row gap-3'>
 						{Thumbnail}
 						<div className='flex flex-col justify-center'>
-							<div>{subTitle && <div className='text-neutral-500'>{subTitle}</div>}</div>
-							<div className='text-[34px] font-bold leading-[34px]'>{title}</div>
+							<div>
+								{subTitle && <div className='text-neutral-500'>{subTitle}</div>}
+							</div>
+							<div className='text-[34px] font-bold leading-[34px]'>
+								{title}
+							</div>
 						</div>
 					</article>
 					<div className='relative left-[-45px]'>

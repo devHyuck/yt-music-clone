@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { BarLoader } from 'react-spinners';
-import LoadingBar from '../../components/LoadingBar';
+import LoadingBar from "@/components/LoadingBar";
+import React from "react";
+import { BarLoader } from "react-spinners";
 
 const loading = () => {
 	return <LoadingBar />;
