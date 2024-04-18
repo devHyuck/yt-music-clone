@@ -1,16 +1,27 @@
-import { Playlist } from '@/types';
-import React from 'react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import PlayListCard from './PlayListCard';
+import { Playlist } from "@/types";
+import React from "react";
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
+import PlayListCard from "./PlayListCard";
 
 interface PlayListCarouselProps {
-	title: string;
+	title?: string;
 	subTitle?: string;
 	Thumbnail?: React.ReactNode;
 	playlistArray?: Playlist[];
 }
 
-const PlayListCarousel: React.FC<PlayListCarouselProps> = ({ title, subTitle, Thumbnail, playlistArray }) => {
+const PlayListCarousel: React.FC<PlayListCarouselProps> = ({
+	title,
+	subTitle,
+	Thumbnail,
+	playlistArray,
+}) => {
 	return (
 		<div className='w-full '>
 			<Carousel>
@@ -18,8 +29,12 @@ const PlayListCarousel: React.FC<PlayListCarouselProps> = ({ title, subTitle, Th
 					<article className='flex flex-row gap-3'>
 						{Thumbnail}
 						<div className='flex flex-col justify-center'>
-							<div>{subTitle && <div className='text-neutral-500'>{subTitle}</div>}</div>
-							<div className='text-[34px] font-bold leading-[34px]'>{title}</div>
+							<div>
+								{subTitle && <div className='text-neutral-500'>{subTitle}</div>}
+							</div>
+							<div className='text-[34px] font-bold leading-[34px]'>
+								{title}
+							</div>
 						</div>
 					</article>
 					<div className='relative left-[-45px]'>
@@ -32,7 +47,10 @@ const PlayListCarousel: React.FC<PlayListCarouselProps> = ({ title, subTitle, Th
 				<CarouselContent>
 					{playlistArray?.map((playlist, index) => {
 						return (
-							<CarouselItem key={index} className='basis-1/2 md:basis-1/3 lg:basis-1/4'>
+							<CarouselItem
+								key={index}
+								className='basis-1/2 md:basis-1/3 lg:basis-1/4'
+							>
 								<PlayListCard playlist={playlist} />
 							</CarouselItem>
 						);

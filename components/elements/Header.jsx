@@ -47,15 +47,34 @@ const Header = ({ children }) => {
 
 	useEffect(() => {
 		const currentHeadRef = headRef.current;
+		// 스크롤 함수
 		const handleScroll = () => {
 			const scrollValue = headRef?.current?.scrollTop;
 			setIsScolled(scrollValue !== 0);
 		};
+		// 디바운스 함수 (원본함수, 기다릴시간)
+		const debounce = (func, waitTime) => {
+			let timeOut;
+			return function executedFunction(...arg) {
+				const later = () => {
+					// 먼저 실행된 timeOut을 초기화
+					timeOut = null;
+					// 원본함수 실행
+					func(...arg);
+				};
+				// 이전에 설정된 타이머 초기화
+				clearTimeout(timeOut);
+				// later함수를 기다릴시간뒤에 실행시킨다
+				timeOut = setTimeout(later, waitTime);
+			};
+		};
 
-		currentHeadRef?.addEventListener("scroll", handleScroll);
+		const debouncedHandleScroll = debounce(handleScroll, 200);
+
+		currentHeadRef?.addEventListener("scroll", debouncedHandleScroll);
 
 		return () => {
-			currentHeadRef?.removeEventListener("scroll", handleScroll);
+			currentHeadRef?.removeEventListener("scroll", debouncedHandleScroll);
 		};
 	}, []);
 
